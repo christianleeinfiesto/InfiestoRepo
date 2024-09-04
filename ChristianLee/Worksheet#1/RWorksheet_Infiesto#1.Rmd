@@ -1,8 +1,8 @@
 ---
 title: "INFIESTO"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 date: "2024-09-04"
 ---
 
@@ -96,7 +96,7 @@ int1to1000
 ```
 9
 ```{r}
-filter <- Filter(function(i) { all(i %% c(3, 5, 7) != 0) }, seq(1, 100))
+filter <- Filter(function(i) { all(i %% c(3, 5, 7) != 0) }, seq(100))
 print(filter)
 ```
 10
@@ -104,6 +104,43 @@ print(filter)
 backwards_seq <- seq(100, 1, by = -1)
 print(backwards_seq)
 ```
+11
+```{r}
+multiples <- Filter(function(i) { i %% 3 == 0 || i %% 5 == 0 }, seq(1, 24))
+sum_multiples <- sum(multiples)
+
+print(multiples)
+print(sum_multiples)
+```
+12
+
+{0 + x + 5 + }
+"This statement is either incomplete or contains an extra operator that will cause an error."
+
+13
+```{r}
+x <- c(72, 86, 92, 63, 88, 89, 91, 92, 75, 75, 77)
+x[2]
+x[3]
+```
+14
+```{r}
+a <- c(1, 2, NA, 4, NA, 6, 7)
+print(a, na.print="999")
+```
+"na.print="999" replaces NA values with 999 only in the printed output."
+
+15
+```{r}
+name = readline(prompt="Input your name: ")
+age = readline(prompt="Input your age: ")
+print(paste("My name is",name, "and I am",age ,"years old."))
+print(R.version.string)
+```
+
+
+
+
 
 
 

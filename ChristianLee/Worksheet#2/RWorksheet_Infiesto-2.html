@@ -454,15 +454,77 @@ print(AverageFuelExpenditure)</code></pre>
 <pre class="r"><code># 7. R has actually lots of built-in datasets. For example, the rivers data “gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey”.
 
 # a. Type “rivers” in your R console. Create a vector data with 7 elements, containing the number of elements (length) in rivers, their sum (sum), mean (mean), median(median), variance(var), standard deviation(sd), minimum (min) and maximum (max). data &lt;- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers), sd(rivers), min(rivers), max(rivers))
-# View the built-in rivers dataset
 data(rivers)
-
 data &lt;- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers), sd(rivers), min(rivers), max(rivers))
-
-
 print(data)</code></pre>
 <pre><code>## [1]    141.0000  83357.0000    591.1844    425.0000 243908.4086    493.8708
 ## [7]    135.0000   3710.0000</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code># 8. The table below gives the 25 most powerful celebrities and their annual pay as ranked by the editions of Forbes magazine and as listed on the Forbes.com website.
+# a. Create vectors according to the above table.
+PowerRanking &lt;- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)
+CelebrityName &lt;- c(&quot;Tom Cruise&quot;, &quot;Rolling Stones&quot;, &quot;Oprah Winfrey&quot;, &quot;U2&quot;, &quot;Tiger Woods&quot;, &quot;Steven Spielberg&quot;, &quot;Howard Stern&quot;, &quot;50 Cent&quot;, &quot;Cast of the Sopranos&quot;, &quot;Dan Brown&quot;, &quot;Bruce Springsteen&quot;, &quot;Donald Trump&quot;, &quot;Muhammad Ali&quot;, &quot;Paul McCartney&quot;, &quot;George Lucas&quot;, &quot;Elton John&quot;, &quot;David Letterman&quot;, &quot;Phil Mickelson&quot;, &quot;J.K. Rowling&quot;, &quot;Bradd Pitt&quot;, &quot;Peter Jackson&quot;, &quot;Dr. Phil McGraw&quot;, &quot;Jay Leno&quot;, &quot;Celine Dion&quot;, &quot;Kobe Bryant&quot;)
+Pay &lt;- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31)
+ForbesData &lt;- data.frame(PowerRanking, CelebrityName, Pay)
+print(ForbesData)</code></pre>
+<pre><code>##    PowerRanking        CelebrityName Pay
+## 1             1           Tom Cruise  67
+## 2             2       Rolling Stones  90
+## 3             3        Oprah Winfrey 225
+## 4             4                   U2 110
+## 5             5          Tiger Woods  90
+## 6             6     Steven Spielberg 332
+## 7             7         Howard Stern 302
+## 8             8              50 Cent  41
+## 9             9 Cast of the Sopranos  52
+## 10           10            Dan Brown  88
+## 11           11    Bruce Springsteen  55
+## 12           12         Donald Trump  44
+## 13           13         Muhammad Ali  55
+## 14           14       Paul McCartney  40
+## 15           15         George Lucas 233
+## 16           16           Elton John  34
+## 17           17      David Letterman  40
+## 18           18       Phil Mickelson  47
+## 19           19         J.K. Rowling  75
+## 20           20           Bradd Pitt  25
+## 21           21        Peter Jackson  39
+## 22           22      Dr. Phil McGraw  45
+## 23           23             Jay Leno  32
+## 24           24          Celine Dion  40
+## 25           25          Kobe Bryant  31</code></pre>
+<pre class="r"><code>#b. Modify the power ranking and pay of J.K. Rowling. Change power ranking to 15 and pay to 90. Write the R scripts and its output.
+ForbesData[ForbesData$CelebrityName == &quot;J.K. Rowling&quot;, &quot;PowerRanking&quot;] &lt;- 15
+ForbesData[ForbesData$CelebrityName == &quot;J.K. Rowling&quot;, &quot;Pay&quot;] &lt;- 90
+print(ForbesData)</code></pre>
+<pre><code>##    PowerRanking        CelebrityName Pay
+## 1             1           Tom Cruise  67
+## 2             2       Rolling Stones  90
+## 3             3        Oprah Winfrey 225
+## 4             4                   U2 110
+## 5             5          Tiger Woods  90
+## 6             6     Steven Spielberg 332
+## 7             7         Howard Stern 302
+## 8             8              50 Cent  41
+## 9             9 Cast of the Sopranos  52
+## 10           10            Dan Brown  88
+## 11           11    Bruce Springsteen  55
+## 12           12         Donald Trump  44
+## 13           13         Muhammad Ali  55
+## 14           14       Paul McCartney  40
+## 15           15         George Lucas 233
+## 16           16           Elton John  34
+## 17           17      David Letterman  40
+## 18           18       Phil Mickelson  47
+## 19           15         J.K. Rowling  90
+## 20           20           Bradd Pitt  25
+## 21           21        Peter Jackson  39
+## 22           22      Dr. Phil McGraw  45
+## 23           23             Jay Leno  32
+## 24           24          Celine Dion  40
+## 25           25          Kobe Bryant  31</code></pre>
 
 
 

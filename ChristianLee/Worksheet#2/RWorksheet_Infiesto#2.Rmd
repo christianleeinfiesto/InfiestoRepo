@@ -104,15 +104,74 @@ print(data)
 PowerRanking <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)
 CelebrityName <- c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Spielberg", "Howard Stern", "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Springsteen", "Donald Trump", "Muhammad Ali", "Paul McCartney", "George Lucas", "Elton John", "David Letterman", "Phil Mickelson", "J.K. Rowling", "Bradd Pitt", "Peter Jackson", "Dr. Phil McGraw", "Jay Leno", "Celine Dion", "Kobe Bryant")
 Pay <- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31)
-ForbesData <- data.frame(PowerRanking, CelebrityName, Pay)
-print(ForbesData)
+Forbes <- data.frame(PowerRanking, CelebrityName, Pay)
+print(Forbes)
 
 #b. Modify the power ranking and pay of J.K. Rowling. Change power ranking to 15 and pay to 90. Write the R scripts and its output.
-ForbesData[ForbesData$CelebrityName == "J.K. Rowling", "PowerRanking"] <- 15
-ForbesData[ForbesData$CelebrityName == "J.K. Rowling", "Pay"] <- 90
-print(ForbesData)
+Forbes[Forbes$CelebrityName == "J.K. Rowling", "PowerRanking"] <- 15
+Forbes[Forbes$CelebrityName == "J.K. Rowling", "Pay"] <- 90
+print(Forbes)
+
+#c. Create an excel file from the table above and save it as csv file(PowerRanking). Import the csv file into the RStudio.
+setwd("/cloud/project/ChristianLee/Worksheet#2") 
+PowerRanking <- read.csv("PowerRanking.csv")
+print(PowerRanking)
+print(PowerRanking)
+
+#d. Access the rows 10 to 20 and save it as Ranks.RData.
+subset_ranks <- PowerRanking[10:20,]
+save(subset_ranks, file = "Ranks.RData")
+print(subset_ranks)
 
 ```
+```{r}
+#9. Download the Hotels-Vienna https://tinyurl.com/Hotels-Vienna
+#a. Import the excel file into your RStudio.
+install.packages("readxl")
+library(readxl)
+file_path <- "/cloud/project/ChristianLee/Worksheet#2/hotels-vienna.xlsx"  
+hotels_data <- read_excel(file_path)
+print(hotels_data)
 
+#b. How many dimensions does the dataset have?
+dimensions <- dim(hotels_data)
+print(dimensions)
+
+#c. Select columns country, neighbourhood, price, stars, accomodation_type, and ratings.
+install.packages("dplyr")
+library(dplyr)
+selected_columns <- hotels_data %>%
+  select(country, neighbourhood, price, stars, accommodation_type, rating)
+print(selected_columns)
+
+#d. Save the data as **new.RData to your RStudio.
+save(selected_columns, file = "new.RData")
+file.exists("new.RData")
+
+#e. Display the first six rows and last six rows of the new.RData.
+head(selected_columns)
+tail(selected_columns)
+
+```
+10.
+```{r}
+#10. Create a list of ten (10) vegetables you ate during your lifetime. If none, just list down.
+#a.
+vegetables <- c("Carrot", "Broccoli", "Spinach", "Potato", "Tomato", "Cucumber", "Pepper", "Lettuce", "Onion", "Garlic")
+vegetables
+
+#b. Add 2 additional vegetables after the last vegetables in the list.
+vegetables <- c(vegetables, "Zucchini", "Eggplant")
+vegetables
+
+#c. Add 4 additional vegetables after index 5. How many datapoints does your vegetable list have?
+vegetables <- append(vegetables, c("Pumpkin", "Kale", "Beetroot", "Radish"), after = 5)
+vegetables
+
+#d. Remove the vegetables in index 5, 10, and 15. How many vegetables were left?
+vegetables <- vegetables[-c(5, 10, 15)]
+vegetables
+
+```
 
 

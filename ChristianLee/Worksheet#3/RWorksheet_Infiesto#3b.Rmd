@@ -1,7 +1,7 @@
 ---
 title: "RWorksheet_Infiesto#3b"
 author: "Infiesto"
-date: "2024-10-05"
+date: "2024-10-23"
 output:
   html_document: default
   pdf_document: default
@@ -43,8 +43,8 @@ df[1:2, ]
 df[c(3, 5), c(2, 4)]
 
 #f. Select the variable types of houses then store the vector that results as types_houses.
-types_houses <- df$Types_of_Houses
-types_houses
+th <- df$Types_of_Houses
+th
 
 #g. Select only all Males respondent that their father occupation was farmer.
 subset(df, Sex == 1 & Fathers_Occupation == 1)

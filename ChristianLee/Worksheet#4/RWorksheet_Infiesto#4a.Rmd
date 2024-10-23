@@ -35,4 +35,18 @@ correlation <- cor(household_data$Shoe_Size, household_data$Height)
 correlation
 
 ```
+2.
+```{r}
+#2. Construct character vector months to a factor with factor() and assign the result to factor_months_vector. Print out factor_months_vector and assert that R prints out the factor levels below the actual values.
+# Create a character vector of months
+months <- c("March", "April", "January", "November", "January", "September", "October", "September", "November", "August", "January", "November", "November", "February", "May", "August", "July", "December", "August", "August", "September", "November", "February", "April")
+factor_months_vector <- factor(months)
+print(factor_months_vector)
+levels(factor_months_vector)
+
+
+#3. Then check the summary() of the months_vector and factor_months_vector. | Inter-pret the results of both vectors. Are they both equally useful in this case?
+summary(months)
+summary(factor_months_vector)
+```
 

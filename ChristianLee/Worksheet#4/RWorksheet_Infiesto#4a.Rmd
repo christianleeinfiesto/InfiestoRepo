@@ -49,4 +49,21 @@ levels(factor_months_vector)
 summary(months)
 summary(factor_months_vector)
 ```
+4.
+```{r}
+#4. Create a vector and factor for the table below.
+factor_data <- rep(c("East", "West", "North"), c(1, 4, 3))
+new_order_data <- factor(factor_data, levels = c("East", "West", "North"))
+print(new_order_data)
+
+```
+5.
+```{r}
+#5. Enter the data below in Excel with file name = import_march.csv
+
+#a. Import the excel file into the Environment Pane using read.table() function.
+data <- read.table("import_march.csv", header = TRUE, sep = ",",na.strings = "")
+print(data)
+```
+
 

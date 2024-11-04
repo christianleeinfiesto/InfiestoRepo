@@ -96,6 +96,16 @@ if (length(gender_counts) > 0) {
 }
 
 ```
+```{r}
+expenses <- c(60, 10, 5, 25)
+labels <- paste0(round(expenses / sum(expenses) * 100), "%")
+colors <- c("lightblue", "orange", "lightgreen", "pink")
+
+pie(expenses, labels = labels, col = colors, main = "Dela Cruz Family Monthly Expenses")
+legend("topright", legend = c("Food", "Electricity", "Savings", "Miscellaneous"), fill = colors)
+
+```
+
 
 
 

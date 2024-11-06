@@ -3,8 +3,8 @@ title: "RWorksheet_Infiesto#4b"
 author: "Infiesto"
 date: "2024-10-30"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 ```{r}
 #1. Using the for loop, create an R script that will display a 5x5 matrix as shown in Figure 1. It must contain vectorA = [1,2,3,4,5] and a 5 x 5 zero 
@@ -105,6 +105,58 @@ pie(expenses, labels = labels, col = colors, main = "Dela Cruz Family Monthly Ex
 legend("topright", legend = c("Food", "Electricity", "Savings", "Miscellaneous"), fill = colors)
 
 ```
+```{r}
+#6. Use the iris dataset.
+#data(iris)
+
+#a. Check for the structure of the dataset using the str() function. Describe what you have seen in the output.
+
+data(iris)
+str(iris)
+
+#b. Create an R object that will contain the mean of the sepal.length, sepal.width,petal.length,and petal.width. What is the R script and its result?
+
+mean_values <- colMeans(iris[, 1:4])
+mean_values
+
+#c. Create a pie chart for the Species distribution. Add title, legends, and colors. Write the R script and its result.
+
+species_counts <- table(iris$Species)
+pie(species_counts, main = "Species Distribution in Iris Dataset", 
+    col = c("lightblue", "pink", "lightgreen"), 
+    labels = c("Setosa", "Versicolor", "Virginica"))
+legend("topright", legend = c("Setosa", "Versicolor", "Virginica"), 
+       fill = c("lightblue", "pink", "lightgreen"))
+
+
+#d. Subset the species into setosa, versicolor, and virginica. Write the R scripts and show the last six (6) rows of each species.
+
+setosa <- subset(iris, Species == "setosa")
+versicolor <- subset(iris, Species == "versicolor")
+virginica <- subset(iris, Species == "virginica")
+
+tail(setosa, 6)
+tail(versicolor, 6)
+tail(virginica, 6)
+
+#e. Create a scatterplot of the sepal.length and sepal.width using the different species(setosa,versicolor,virginica). Add a title = “Iris Dataset”, subtitle = “Sepal width and length, labels for the x and y axis, the pch symbol and colors should be based on the species.
+
+iris$Species <- as.factor(iris$Species)
+
+plot(iris$Sepal.Length, iris$Sepal.Width, 
+     col = c("red", "green", "blue")[as.numeric(iris$Species)],
+     pch = c(16, 17, 18)[as.numeric(iris$Species)], 
+     xlab = "Sepal Length", ylab = "Sepal Width",
+     main = "Iris Dataset", sub = "Sepal Width and Length")
+
+legend("topright", legend = levels(iris$Species), 
+       col = c("red", "green", "blue"), pch = c(16, 17, 18))
+
+#f. Interpret the result.
+
+# The scatterplot shows that Setosa is easy to identify because it has smaller sepals and forms a separate cluster. Versicolor and Virginica, on the other hand, overlap in sepal size, though Virginica tends to have slightly longer sepals. This means that to tell Versicolor and Virginica apart, we might need to look at petal size too.
+```
+
 
 
 

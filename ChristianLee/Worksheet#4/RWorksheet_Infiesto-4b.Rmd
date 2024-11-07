@@ -3,8 +3,8 @@ title: "RWorksheet_Infiesto#4b"
 author: "Infiesto"
 date: "2024-10-30"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 ```{r}
 #1. Using the for loop, create an R script that will display a 5x5 matrix as shown in Figure 1. It must contain vectorA = [1,2,3,4,5] and a 5 x 5 zero 
@@ -155,6 +155,87 @@ legend("topright", legend = levels(iris$Species),
 #f. Interpret the result.
 
 # The scatterplot shows that Setosa is easy to identify because it has smaller sepals and forms a separate cluster. Versicolor and Virginica, on the other hand, overlap in sepal size, though Virginica tends to have slightly longer sepals. This means that to tell Versicolor and Virginica apart, we might need to look at petal size too.
+```
+```{r}
+#7. Import the alexa-file.xlsx. Check on the variations. Notice that there are extra whitespaces among black variants (Black Dot, Black Plus, Black Show, Black Spot). Also on the white variants (White Dot, White Plus, White Show, White Spot).
+
+library(readxl)
+library(knitr)
+
+RObject <- read_excel("alexa-file.xlsx")
+
+head(RObject)
+
+#a. Rename the white and black variants by using gsub() function.
+
+RObject$variation <- gsub("Black Dot", "Black_Dot", RObject$variation)
+RObject$variation <- gsub("Black Plus", "Black_Plus", RObject$variation)
+RObject$variation <- gsub("Black Show", "Black_Show", RObject$variation)
+RObject$variation <- gsub("Black Spot", "Black_Spot", RObject$variation)
+
+RObject$variation <- gsub("White Dot", "White_Dot", RObject$variation)
+RObject$variation <- gsub("White Plus", "White_Plus", RObject$variation)
+RObject$variation <- gsub("White Show", "White_Show", RObject$variation)
+RObject$variation <- gsub("White Spot", "White_Spot", RObject$variation)
+
+head(RObject)
+
+#b. Get the total number of each variations and save it into another object. Save the object as variations.RData. Write the R scripts. What is its result?
+
+library(dplyr)
+
+variations_summary <- RObject %>%
+  count(variation)
+
+save(variations_summary, file = "variations.RData")
+print(variations_summary)
+
+#c. From the variations.RData, create a barplot(). Complete the details of the chart which include the title, color, labels of each bar.
+
+load("variations.RData")
+
+barplot(variations_summary$n, 
+        names.arg = variations_summary$variation, 
+        col = "pink", 
+        main = "Total Number of Variations", 
+        xlab = "Variation", 
+        ylab = "Count", 
+        las = 2,  
+        cex.names = 0.7,  
+        cex.axis = 0.8)  
+
+#d. Create a barplot() for the black and white variations. Plot it in 1 frame, side by side. Complete the details of the chart.
+
+black_white_variations <- variations_summary %>%
+  filter(grepl("Black|White", variation))
+
+black_variations <- black_white_variations %>% filter(grepl("Black", variation))
+white_variations <- black_white_variations %>% filter(grepl("White", variation))
+
+par(mfrow = c(1, 2))
+
+barplot(black_variations$n, 
+        names.arg = black_variations$variation, 
+        col = c("black", "red", "green", "blue", "cyan"), 
+        main = "Black Variants", 
+        xlab = "Variation", 
+        ylab = "Count", 
+        las = 2,  
+        cex.names = 0.7,  
+        cex.axis = 0.8)
+
+barplot(white_variations$n, 
+        names.arg = white_variations$variation, 
+        col = c("black", "red", "green", "blue", "cyan"), 
+        main = "White Variants", 
+        xlab = "Variation", 
+        ylab = "Count", 
+        las = 2,  
+        cex.names = 0.7,  
+        cex.axis = 0.8)
+
+par(mfrow = c(1, 1))
+
 ```
 
 

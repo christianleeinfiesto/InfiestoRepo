@@ -70,6 +70,40 @@ ggplot(mpg, aes(x = model, y = manufacturer)) +
 
 #b. For you, is it useful? If not, how could you modify the data to make it more informative?
 # - No, the scatterplot is not very useful because it looks too crowded. I would group the data by manufacturer and model count, then use a bar chart to make it clearer.
+
+#3. Plot the model and the year using ggplot(). Use only the top 20 observations. Write the codes and its 
+top_20 <- mpg %>% top_n(20, displ)
+ggplot(top_20, aes(x = model, y = year)) + 
+  geom_point() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Top 20 Models by Year")
+
+#4. Using the pipe (%>%), group the model and get the number of cars per model. Show codes and its result
+num <- mpg %>%
+  group_by(model) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
+
+#a. Plot using geom_bar() using the top 20 observations only. The graphs shoudl have a title, labels and colors. Show code and results.
+ ggplot(num[1:20,],
+       aes(x = reorder(model, count), y = count)) +
+  geom_bar(stat = "identity", fill = "lightblue") +
+  labs(title = "Top 20 Models by Count", x = "Model", y = "Count") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+#b. Plot using the geom_bar() + coord_flip() just like what is shown below. Show codes and its result.
+ ggplot(num[1:20,], aes(x = reorder(model, count), y = count)) +
+  geom_bar(stat = "identity", fill = "lightpink") +
+  coord_flip() +
+  labs(title = "Top 20 Models by Count (Flipped)", x = "Count", y = "Model")
+
+#5. Plot the relationship between cyl - number of cylinders and displ - engine displacement usinggeom_point with aesthetic color = engine displacement. Title should be “Relationship between No. of Cylinders and Engine Displacement”.
+ggplot(mpg, aes(x = cyl, y = displ, color = displ)) +
+  geom_point() +
+  labs(title = "Relationship between No. of Cylinders and Engine Displacement",
+    x = "Number of Cylinders",
+    y = "Engine Displacement")
+#a. How would you describe its relationship? Show the codes and its result.
+# - The plot shows that as the number of cylinders increases, engine displacement usually increases. Cars with more cylinders tend to have bigger engines. However, there is some variation even within the same cylinder group.
 ```
 
 

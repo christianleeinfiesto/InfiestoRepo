@@ -104,6 +104,38 @@ ggplot(mpg, aes(x = cyl, y = displ, color = displ)) +
     y = "Engine Displacement")
 #a. How would you describe its relationship? Show the codes and its result.
 # - The plot shows that as the number of cylinders increases, engine displacement usually increases. Cars with more cylinders tend to have bigger engines. However, there is some variation even within the same cylinder group.
+
+#6. Plot the relationship between displ (engine displacement) and hwy(highway miles per gallon). Mapped it with a continuous variable you have identified in #1-c. What is its result? Why it produced such output?
+
+ggplot(mpg, aes(x = displ, y = hwy, color = cty)) +
+  geom_point() +
+  labs(title = "Relationship between Engine Displacement and Highway MPG",
+       x = "Engine Displacement",
+       y = "Highway MPG")
+```
+```{r}
+#6. Import the traffic.csv onto your R environment.
+library(readr)
+traffic <- read_csv("C:/users/USER/downloads/traffic.csv")
+print(traffic)
+
+#a. How many numbers of observation does it have? What are the variables of the traffic dataset the Show your answer.
+nrow(traffic)
+ncol(traffic)
+colnames(traffic)
+
+#b. subset the traffic dataset into junctions. What is the R codes and its output?
+library(dplyr)
+junction_a <- filter(traffic, Junction == "A")
+head(junction_a)
+
+#c. Plot each junction in a using geom_line(). Show your solution and output.
+library(ggplot2)
+ggplot(traffic, aes(x = Date, y = Traffic_Volume, color = Junction, group = Junction)) +
+  geom_line() +
+  labs(title = "Traffic Volume by Junction", x = "Date", y = "Traffic Volume") +
+  theme_minimal()
+
 ```
 
 

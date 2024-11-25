@@ -58,7 +58,7 @@ print(unique_mods)
 barplot(manufacturer$num_models,
         names.arg = manufacturer$manufacturer,
         las = 2,
-        col = "pink",
+        col = "red",
         main = "Number of Models by Manufacturer",
         ylab = "Number of Models")
 #2. Same dataset will be used. You are going to show the relationship of the modeland the manufacturer.
@@ -137,5 +137,56 @@ ggplot(traffic, aes(x = Date, y = Traffic_Volume, color = Junction, group = Junc
   theme_minimal()
 
 ```
+```{r}
+#7. From alexa_file.xlsx, import it to your environment
+
+#a. How many observations does alexa_file has? What about the number of columns? Show your solution and answer.
+library(readxl)
+setwd("C:/users/USER/downloads")
+alexa_data <- read_excel("alexa_file.xlsx")
+dimensions <- dim(alexa_data)
+dimensions
+
+# b. group the variations and get the total of each variations. Use dplyr package. Show solution and answer.
+library(dplyr)
+variation <- alexa_data %>%
+  group_by(variation) %>%
+  summarise(Count = n())
+variation
+
+#c. Plot the variations using the ggplot() function. What did you observe? Complete the details of the graph. Show solution and answer.
+library(dplyr)
+ggplot(alexa_data %>%
+         count(variation, sort = TRUE),
+       aes(x = reorder(variation, n), y = n, fill = variation)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Variation Distribution (Sorted)",
+       x = "Variation",
+       y = "Count") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  coord_flip()  
+
+
+
+#d. Plot a geom_line() with the date and the number of verified reviews. Complete the details of the graphs. Show your answer and solution.
+plot_rev <- ggplot(alexa_data, mapping = aes(x = date, y = verified_reviews)) +
+  geom_line(color = "blue") +
+  theme_light() +
+  xlab("Date") +
+  ylab("Number of Verified Reviews") +
+  ggtitle("Verified Reviews Over Time")
+
+#e. Get the relationship of variations and ratings. Which variations got the most highest in rating? Plot a graph to show its relationship. Show your solution and answer.
+ggplot(alexa_data, aes(x = variation, y = rating)) +
+  geom_point(color = "lightgreen") +
+  labs(title = "Variations vs Ratings",
+       x = "Variation",
+       y = "Ratings") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
 
 
